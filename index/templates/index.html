@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Recognition</title>
+    <link href="{% static 'css/number.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<header calss="header">
+    <h1 style="margin-left: 10%">Number Recognition</h1>
+</header>
+<main>
+    <div style="margin-left: 10%">
+        <canvas id="canvassample" width="500" height="500"></canvas>
+        <table>
+            <td>
+                <tr>
+                    <td id="resetbutton">
+                        <button type="button" onclick="clearCanvas()">reset</button>
+                    </td>
+                    <td id="okbutton">
+                        <button type="button" onclick="chgImg()" value="1">ok</button>
+                    </td>
+                </tr>
+            </td>
+        </table>
+        <form action='' method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type='hidden' id='newImg' name='newImg' value="">
+            <input type="submit" value="Do Recognition !">
+        </form>
+        <p style="font:120">SVC answer is ... {{ svc_answer }}</p>
+        <p style="font:120">CNN answer is ... {{ cnn_answer }}</p>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="{% static 'js/number.js' %}"></script>
+</body>
+</html>
