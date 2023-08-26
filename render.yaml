@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: number_recognition
+    env: python
+    region: singapore
+    buildCommand: './build.sh'
+    startCommand: 'gunicorn number_recognition.wsgi:application'
+    plan: free
+    branch: main
+    healthCheckPath: /
+    autoDeploy: true
